@@ -1,7 +1,8 @@
 import { serve } from "https://deno.land/std@0.120.0/http/server.ts";
 
 function handler(req: Request): Response {
-  console.log('A request was made @', new Date().toISOString())
+  // console.log('A request was made @', new Date().toISOString())
+  throw new Error('an error happened!')
 
   return new Response("Hello world");
 }
