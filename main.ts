@@ -1,10 +1,13 @@
-import { serve } from "https://deno.land/std@0.120.0/http/server.ts";
-
-function handler(req: Request): Response {
-  console.log('A request was made @', new Date().toISOString())
-
-  return new Response("Hello world");
-}
-
-console.log("Listening on http://localhost:8000");
-await serve(handler);
+let count = 0;
+addEventListener("fetch", (event) => {
+  console.log(`Received request #${++count} to ${event.request.url}`);
+  event.respondWith(
+    new Response(`Hello there. You are request #${count}`, {
+      status: 200,
+      headers: {
+        server: "deploy",
+        "content-type": "text/plain",
+      },
+    }),
+  );
+});
